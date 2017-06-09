@@ -7,13 +7,21 @@ RISC-V SoC with MMIO-mapped peripherals, DMA, and custom accelerators.
 # Need experience:
 
 Gnu/Linux
+
 Bash
+
 Makefile
+
 Gcc
+
 Debuging
+
 C++(С)
+
 Java
+
 Scala
+
 Chisel3
 
 ## Getting started
