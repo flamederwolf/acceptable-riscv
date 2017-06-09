@@ -16,11 +16,35 @@ Java
 Scala 
 Chisel3
 
-##Presets
+# Presets(Ubuntu)
 
-Install the required packages
+Install the required packages:
 
     $ sudo apt-get install autoconf automake autotools-dev curl device-tree-compiler libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev
+
+Install java sdk 8:
+
+    $ echo "deb http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | sudo tee /etc/apt/sources.list.d/webupd8team-java.list
+    $ echo "deb-src http://ppa.launchpad.net/webupd8team/java/ubuntu xenial main" | sudo tee -a /etc/apt/sources.list.d/webupd8team-java.list
+    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys EEA14886
+    $ sudo apt-get update
+    $ sudo apt-get install oracle-java8-installer
+    $ sudo apt-get install oracle-java8-set-default
+    
+Install sbt, Verilator:
+
+    $ echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+    $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 642AC823
+    $ sudo apt-get update
+    $ sudo apt-get install sbt
+    $ sudo apt-get install git make autoconf g++ flex bison
+    $ git clone http://git.veripool.org/git/verilator
+    $ git pull
+    $ git checkout verilator_3_904 # look on the latest
+    $ autoconf
+    $ ./configure
+    $ make
+    $ sudo make install
 
 ## Getting started
 
@@ -46,34 +70,16 @@ the following steps are necessary.
 
     cd riscv-tools
     ./build.sh
+    
+### Make Firrtl possible
 
-### Compiling and running the Verilator simulation
-
-To compile the example design, run make in the "verisim" directory.
-This will elaborate the DefaultExampleConfig in the example project.
-
-Note that due to mismanaged Chisel/Firrtl dependencies in the upstream
-code, you may see an error like this:
-
-    [error] (coreMacros/*:update) sbt.ResolveException: unresolved dependency: edu.berkeley.cs#firrtl_2.11;1.1-SNAPSHOT: not found
-
-You can work around this error by first building Firrtl and publishing
-the jar locally:
-
-    cd rocket-chip/firrtl; sbt publish-local
-
-Once these issues are resolved, an executable called
-simulator-example-DefaultExampleConfig will be produced.
-You can then use this executable to run any compatible RV64 code. For instance,
-to run one of the riscv-tools assembly tests.
-
-    ./simulator-example-DefaultExampleConfig $RISCV/riscv64-unknown-elf/share/riscv-tests/isa/rv64ui-p-simple
-
-If you later create your own project, you can use environment variables to
-build an alternate configuration.
-
-    make PROJECT=yourproject CONFIG=YourConfig
-    ./simulator-yourproject-YourConfig ...
+    cd firrtl
+    sbt compile
+    sbt test
+    sbt assembly
+    sbt publish-local
+    
+More info: https://github.com/flamederwolf/firrtl
 
 ## Submodules and Subdirectories
 
