@@ -16,6 +16,12 @@ Java
 Scala 
 Chisel3
 
+##Presets
+
+Install the required packages
+
+    $ sudo apt-get install autoconf automake autotools-dev curl device-tree-compiler libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev
+
 ## Getting started
 
 ### Checking out the sources
