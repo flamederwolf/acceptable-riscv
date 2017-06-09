@@ -79,7 +79,7 @@ the following steps are necessary.
     sbt assembly
     sbt publish-local
     
-More info: https://github.com/flamederwolf/firrtl
+More info: https://github.com/freechipsproject/firrtl
 
 ## Submodules and Subdirectories
 
