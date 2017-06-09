@@ -68,7 +68,7 @@ the following steps are necessary.
     export RISCV=/path/to/install/dir
     export PATH=$RISCV/bin:$PATH
 
-    cd riscv-tools
+    cd rocket-chip/riscv-tools
     ./build.sh
     
 ### Make Firrtl possible
