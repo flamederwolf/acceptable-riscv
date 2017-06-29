@@ -1,5 +1,15 @@
 base_dir=$(abspath ..)
 sim_dir=$(abspath .)
+generated_dir = $(abspath ./generated-src)
+generated_dir_debug = $(abspath ./generated-src-debug)
+generated_target = $(abspath ../target)
+generated_project = $(abspath ../project)
+generated_lib = $(abspath ../lib)
+generated_pkgs = $(abspath ../Makefrag.pkgs)
+generated_testchipip_target = $(abspath ../testchipip/target)
+generated_testchipip_project = $(abspath ../testchipip/project)
+
+SBT_INSTALLED=/usr/share/sbt/bin
 
 PROJECT ?= example
 MODEL ?= TestHarness
@@ -13,6 +23,9 @@ sim_debug = $(sim_dir)/simulator-$(PROJECT)-$(CONFIG)-debug
 default: $(sim)
 
 debug: $(sim_debug)
+
+clean:
+	rm -rf *.o *.a simulator-* $(generated_dir) $(generated_dir_debug) DVEfiles $(output_dir) $(generated_target) $(generated_project) $(generated_lib) $(generated_pkgs) $(generated_testchipip_target) $(generated_testchipip_project)
 
 CXXFLAGS := $(CXXFLAGS) -O1 -std=c++11 -I$(RISCV)/include
 LDFLAGS := $(LDFLAGS) -L$(RISCV)/lib -Wl,-rpath,$(RISCV)/lib -L$(sim_dir) -lfesvr -lpthread
