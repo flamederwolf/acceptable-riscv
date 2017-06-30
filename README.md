@@ -39,6 +39,7 @@ Install sbt, Verilator:
     $ sudo apt-get install sbt
     $ sudo apt-get install git make autoconf g++ flex bison
     $ git clone http://git.veripool.org/git/verilator
+    $ cd verilator
     $ git pull
     $ git checkout verilator_3_906 # look on the latest
     $ autoconf
