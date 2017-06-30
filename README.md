@@ -40,11 +40,20 @@ Install sbt, Verilator:
     $ sudo apt-get install git make autoconf g++ flex bison
     $ git clone http://git.veripool.org/git/verilator
     $ git pull
-    $ git checkout verilator_3_904 # look on the latest
+    $ git checkout verilator_3_906 # look on the latest
     $ autoconf
     $ ./configure
     $ make
     $ sudo make install
+    
+Install stand-alone Firrtl:
+
+    $ git clone https://github.com/ucb-bar/firrtl.git 
+    $ cd firrtl
+    $ sbt compile
+    $ sbt test
+    $ sbt assembly
+    $ sbt publish-local
 
 ## Getting started
 
@@ -70,16 +79,6 @@ the following steps are necessary.
 
     cd rocket-chip/riscv-tools
     ./build.sh
-    
-### Make Firrtl possible
-
-    cd firrtl
-    sbt compile
-    sbt test
-    sbt assembly
-    sbt publish-local
-    
-More info: https://github.com/freechipsproject/firrtl
 
 ## Submodules and Subdirectories
 
